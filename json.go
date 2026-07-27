@@ -13,6 +13,7 @@ func (s *Set[T]) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	*s = New[T]().Add(v...)
+	Init(s)
+	_ = s.Add(v...)
 	return nil
 }

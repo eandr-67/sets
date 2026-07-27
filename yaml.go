@@ -13,6 +13,7 @@ func (s *Set[T]) UnmarshalYAML(node *yaml.Node) error {
 	if err := node.Decode(&v); err != nil {
 		return err
 	}
-	*s = New[T]().Add(v...)
+	Init(s)
+	_ = s.Add(v...)
 	return nil
 }
