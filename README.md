@@ -7,6 +7,8 @@ Implementation of the set type in the Go language
 The module exports a generic type `Set[T comparable]`, which implements a set of type `T`, and a generic function
 `New[T comparable]()`, which creates a set of type `T`.
 
+`Set[T]` serialization is implemented for JSON and YAML formats. In text format, sets are stored as arrays.
+
 All operations on sets are performed by calling `Set[T]` methods.
 
 Sets are mutable, and most methods change the values of the sets on which they are called.
@@ -55,8 +57,6 @@ These methods do not modify w, but modify s and return the new value s.
 
 ## Implementation Features
 
-A very simple generic set type, based on map\[comparable\]struct{}. It includes basic mathematical operations on sets
-and set conversions to and from JSON and YAML.
-
-The methods implementing set operations and working with JSON use only the standard library. However, working with YAML
-requires a third-party library.
+This simplest implementation is based on `map[T comparable]struct{}`. Methods implementing set operations and supporting
+JSON use only the standard library. However, YAML support requires
+[go.yaml.in/yaml/v4](https://pkg.go.dev/go.yaml.in/yaml/v4).
